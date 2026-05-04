@@ -1,5 +1,7 @@
+import { useState } from "react"
 
 export const useCausesViewModel = () =>{
+    const [page,setPage] = useState(0);
     const needsState={
         idNeedsState:0,
         needsState:"not done :/"
@@ -25,9 +27,27 @@ export const useCausesViewModel = () =>{
             needsType
         }
     ]
+    const nextPage = ()=>{
+        if (page > 4) return
+        setPage(page+1);
+    }
+
+    const prevPage = ()=>{
+        if (page <= 0) return
+        setPage(page-1);
+
+    }
+    const isEnd = ()=>{
+        return page >= 4
+    }
 
     return {
-        getNeeds: ()=>dummyNeeds
+        getNeeds: ()=>dummyNeeds,
+        page,
+        nextPage,
+        prevPage,
+        isEnd,
+        setPage
     }
 
 

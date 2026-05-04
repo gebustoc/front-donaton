@@ -8,6 +8,7 @@ import NavBar from './components/NavBar';
 import Footer from './components/Footer';
 import NeedsView from './view/NeedsView';
 import LandingView from './view/LandingView';
+import LoginView from './view/LoginView';
 
 
 
@@ -35,6 +36,9 @@ function App() {
               <Route path="/needs" element={<NeedsView/>} />
               <Route path="/us" element={<Test2/>} />
               <Route path="/locations" element={<Test video="https://www.youtube.comz/embed/M7VSEZOQIl0" />} />
+              <Route path="/login" element={<LoginView/>} />
+
+
           </Routes>
         </div>
       <Footer/>

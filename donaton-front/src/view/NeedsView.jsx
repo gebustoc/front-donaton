@@ -1,44 +1,68 @@
-import { Card, ProgressBar } from "react-bootstrap";
+import { Button, Card, ProgressBar, Spinner } from "react-bootstrap";
 import { useCausesViewModel } from "../viewmodel/useCausesViewModel";
 
 
 function TestElement() {
+    const URL = "https://f4.bcbits.com/img/a1156589754_2.jpg"
+    const R = Math.random()
+
     return (
-            
-        <div style={{display:"flex", gap:"1rem", padding:"1rem"}} href="https://kasaneteto.jp">
-            <img src="https://media.discordapp.net/attachments/791435972683890729/1498372654472630475/IMG_20260427_131708741_HDR.jpg?ex=69f23d47&is=69f0ebc7&hm=6cc70e02e9557e7e2e3b76b3062cd770f9a2f707357c797aaff39ded4b231ea7&=&format=webp" style={{width:"20rem", height:"20rem"}}/>
-            <div style={{display:"flex",flexDirection:"column", }}>
+        <Card >
+            <Card.Img src={URL}></Card.Img>
+            <h2>{"Comida"}</h2>
+            <h5>[UBICACION]</h5>
+            <h5>{"Progreso:" + Math.floor(R*40000000)+"/40000000"}</h5>
                 
-                <div style={{display:"flex", gap:"1rem", alignItems:"center"}}>
-                    <h2>Comida [LUGAR]</h2>
-                    <h4>Estado Donacion General:</h4>
-                    <progress max="100" value="0" />
 
-                </div>
-
-
-                <div>
-                    <h4 style={{alignSelf: "flex-end"}}>Santiago - Region Metropolitana</h4>
-                </div>
-            </div>
             
-        </div>
-    )
+            <ProgressBar now={R} max={1}/>
+            <div style={{paddingTop:".5rem"}}></div>
+            <Button>Donar</Button>
+
+        </Card>
+    );    
+
+
 }
 
   
 function NeedsView() {
-    const {getNeeds} = useCausesViewModel()
+    const {
+        getNeeds,
+        page,
+        setPage,
+        nextPage,
+        prevPage,
+        isEnd
+    } = useCausesViewModel()
 
-    return <div style={{display:"flex", flexDirection:"column"}}>
-        <TestElement/>
-        <TestElement/>
-        <TestElement/>
-        <TestElement/>
-        <TestElement/>
-                        
+    console.log(useCausesViewModel())
+    //flexWrap:"warp",, padding:"1rem 1rem 1rem 1rem"}
+    return (
+        <div>    
+            <div style={{display:"flex", flexWrap:"wrap",gap:"1rem", justifyContent:"center", paddingTop:"2rem",paddingBottom:"2rem"}}>
+                <TestElement/>
+                <TestElement/>
+                <TestElement/>
+                <TestElement/>
+                <TestElement/>
+                <TestElement/>
+                <TestElement/>
+                <TestElement/>
+                <TestElement/>
+                <TestElement/>
+                <TestElement/>
+                <TestElement/>
+            </div>
 
-    </div>
+            <div style={{display:"flex", justifyContent:"center",paddingBottom:"1.5rem", gap:"1rem"}}>
+                <Button onClick={prevPage} disabled={page <= 0}>Anterior</Button>
+                <input type="number" min={0} max={4} value={page} onChange={ (event)=>{setPage(event.target.value)} }/>
+                <Button onClick={nextPage} disabled={isEnd()}>Siguiente</Button>
+
+            </div>
+        </div>
+    ) 
 
 
 }
