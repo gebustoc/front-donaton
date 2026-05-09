@@ -1,6 +1,6 @@
 import { Navbar, Nav, Container, Button } from 'react-bootstrap';
 
-function NavBar() {
+function NavBar({loginviewmodel}) {
 
   return (
    <Navbar bg="dark" variant="dark" expand="lg">
@@ -16,8 +16,11 @@ function NavBar() {
          </Nav>
 
          <div style={{gap:".5rem", display:"flex"}}>
-            <Button>Iniciar sesion</Button>
-            <Button>Cerrar sesion</Button>
+            <Button style={{display:!loginviewmodel.loggedIn ? "" : "none"}} href="/login">Iniciar sesion</Button>
+            <Button style={{display:!loginviewmodel.loggedIn ? "" : "none"}} href="/register">Registrarse</Button>
+        
+            <Button style={{display:loginviewmodel.loggedIn ? "" : "none"}} href='/logout'>Cerrar sesion</Button>
+         
          </div>
        
        </Navbar.Collapse>

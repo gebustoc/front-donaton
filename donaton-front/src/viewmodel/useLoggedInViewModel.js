@@ -1,0 +1,47 @@
+import { useEffect, useState } from "react";
+
+
+
+
+
+
+export default function useLoggedInViewModel(){
+
+    const [loggedIn, setLoggedIn] = useState(false)
+    const [waiting, setWaiting] = useState(false)
+    const tryLogin =()=>{
+        setWaiting(true)
+        let token = localStorage.getItem("token")
+        if (token == null){
+            setWaiting(false)    
+            return
+        }
+        // call api to check if token is valid here
+        setLoggedIn(true)
+        setWaiting(false)
+    }
+    const timer = ms => new Promise(res => setTimeout(res, 700))
+
+    const closeSession = async()=>{
+        setWaiting(true)
+        // call api to kill token here
+        let token = localStorage.getItem("token")
+        localStorage.removeItem("token")
+        await timer
+        setWaiting(false)
+        setLoggedIn(false)
+
+    }
+
+
+    useEffect(tryLogin)
+    
+    return {
+        loggedIn,
+        tryLogin,
+        closeSession,
+        waiting
+    }
+
+
+}

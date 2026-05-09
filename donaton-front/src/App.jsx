@@ -9,6 +9,9 @@ import Footer from './components/Footer';
 import NeedsView from './view/NeedsView';
 import LandingView from './view/LandingView';
 import LoginView from './view/LoginView';
+import RegisterView from './view/RegisterView';
+import useLoggedInViewModel from './viewmodel/useLoggedInViewModel';
+import { Spinner } from 'react-bootstrap';
 
 
 
@@ -27,16 +30,19 @@ function Test2() {
 
 
 function App() {
+  const LoginViewModel = useLoggedInViewModel()
+
   return (
     <>
-      <NavBar/>
+      <NavBar loginviewmodel={LoginViewModel}/>
         <div className='wrapper'>
           <Routes>
               <Route path="/" element={<LandingView/>} />
-              <Route path="/needs" element={<NeedsView/>} />
+              <Route path="/needs" element={<NeedsView loginviewmodel={LoginViewModel} />} />
               <Route path="/us" element={<Test2/>} />
               <Route path="/locations" element={<Test video="https://www.youtube.comz/embed/M7VSEZOQIl0" />} />
               <Route path="/login" element={<LoginView/>} />
+              <Route path="/register" element={<RegisterView/>} />
 
 
           </Routes>

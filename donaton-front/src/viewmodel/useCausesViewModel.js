@@ -1,32 +1,12 @@
 import { useState } from "react"
+import DummyNeed from "../fakedata";
 
 export const useCausesViewModel = () =>{
     const [page,setPage] = useState(0);
-    const needsState={
-        idNeedsState:0,
-        needsState:"not done :/"
+    const [donating,setDonating] = useState(false);
+    const [donationAmount, setDonationAmount] = useState(1)    
+    const [sendingDonation, setSendingDonation] = useState(false)
 
-    }
-    const needsType = {
-        idNeedsType:0,
-        needsType:"love+money"
-    }
-        
-
-    const dummyNeeds = [
-        {
-            idNeeds:0,
-            message:"abcdedsua",
-            needsState,
-            needsType
-        },
-        {
-            idNeeds:0,
-            message:"abcdedsua",
-            needsState,
-            needsType
-        }
-    ]
     const nextPage = ()=>{
         if (page > 4) return
         setPage(page+1);
@@ -42,12 +22,20 @@ export const useCausesViewModel = () =>{
     }
 
     return {
-        getNeeds: ()=>dummyNeeds,
+        getNeeds: ()=>DummyNeed(),
         page,
         nextPage,
         prevPage,
         isEnd,
-        setPage
+        setPage,
+        donating,
+        setDonating,
+        startDonationsMenu: ()=>{setDonating(true);setDonationAmount(1)},
+        stopDonationsMenu: ()=>{setDonating(false);setDonationAmount(1)},
+        donationAmount, 
+        setDonationAmount,
+        sendingDonation
+
     }
 
 
