@@ -7,7 +7,7 @@ export default function LandingView(){
         <div >
             <div className="bgimg loginbg">
                 <div style={{alignSelf:"center", paddingLeft:"25rem",paddingRight:"25rem"}}>
-                    <img src="/src/assets/Donaton_2024variante.webp"></img>
+                    <img src='/Donaton.webp'></img>
                     <p style={{color:"white", textShadow:"2px 3px 2px black"}}>I've been constant, at your beck and call
 But lately I just can't do anything at all
 I used to pride myself on my discretion

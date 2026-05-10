@@ -3,7 +3,6 @@ import { useCausesViewModel } from "../viewmodel/useCausesViewModel";
 
 
 
-
 function DonationBox({viewmodel}){
     const DonationChange = (event)=>{
         if (isNaN(Number.parseInt(event.target.value))) return;

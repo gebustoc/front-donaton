@@ -12,6 +12,7 @@ import LoginView from './view/LoginView';
 import RegisterView from './view/RegisterView';
 import useLoggedInViewModel from './viewmodel/useLoggedInViewModel';
 import { Spinner } from 'react-bootstrap';
+import LogoutView from './view/LogoutView';
 
 
 
@@ -43,8 +44,8 @@ function App() {
               <Route path="/locations" element={<Test video="https://www.youtube.comz/embed/M7VSEZOQIl0" />} />
               <Route path="/login" element={<LoginView/>} />
               <Route path="/register" element={<RegisterView/>} />
-
-
+              <Route path="/logout" element={<LogoutView/>} />
+              
           </Routes>
         </div>
       <Footer/>
