@@ -19,13 +19,15 @@ export default function useLoggedInViewModel(){
         console.log(token, "???")
         let obj = JSON.parse(token)
         console.log(obj)
-        const idk = UserService.login(obj.email,obj.contrasena)
-        console.log(idk)
+        const idk = UserService.login(obj.email,obj.contrasena).then(
+            (value)=>{
+                setLoggedIn(true)
+                setWaiting(false)
 
+            }
+        )
 
         // call api to check if token is valid here
-        setLoggedIn(true)
-        setWaiting(false)
     }
     const timer = ms => new Promise(res => setTimeout(res, 700))
 
@@ -39,15 +41,6 @@ export default function useLoggedInViewModel(){
         setLoggedIn(false)
 
     }
-    const tryLoginCreds =(creds)=>{
-        setWaiting(true)
-        
-        const idk = UserService.tokenLogin(creds)
-        console.log(idk)
-        // call api to check if token is valid here
-        setLoggedIn(true)
-        setWaiting(false)
-    }
 
 
     useEffect(tryLogin,[])
@@ -57,7 +50,6 @@ export default function useLoggedInViewModel(){
         tryLogin,
         closeSession,
         waiting,
-        tryLoginCreds
     }
 
 

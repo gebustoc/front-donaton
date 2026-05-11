@@ -11,8 +11,7 @@ function NavBar({loginviewmodel}) {
          <Nav className="me-auto" activeKey={location.pathname}>
            <Nav.Link href="/" >Inicio</Nav.Link>
            <Nav.Link href="/needs">Causas</Nav.Link>
-           <Nav.Link href="/us">Nosotros</Nav.Link>
-           <Nav.Link href="/locations">Sedes</Nav.Link>   
+
          </Nav>
 
          <div style={{gap:".5rem", display:"flex"}}>

@@ -13,8 +13,6 @@ function Footer() {
                     <h5 children="Enlaces Rápidos"/>
                     <ul className="list-unstyled">
                         <li><a href="/" className="text-white">Inicio</a></li>
-                        <li><a href="/blog" className="text-white">Blog</a></li>
-                        <li><a href="/contact" className="text-white">Contacto</a></li>
                     </ul>
                 </Col>
             </Row>
