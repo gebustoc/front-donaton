@@ -42,8 +42,8 @@ function App() {
               <Route path="/needs" element={<NeedsView loginviewmodel={LoginViewModel} />} />
               <Route path="/us" element={<Test2/>} />
               <Route path="/locations" element={<Test video="https://www.youtube.comz/embed/M7VSEZOQIl0" />} />
-              <Route path="/login" element={<LoginView/>} />
-              <Route path="/register" element={<RegisterView/>} />
+              <Route path="/login" element={<LoginView userviewmodel={LoginViewModel}/>} />
+              <Route path="/register" element={<RegisterView userviewmodel={LoginViewModel}/>} />
               <Route path="/logout" element={<LogoutView/>} />
               
           </Routes>

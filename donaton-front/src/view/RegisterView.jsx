@@ -1,8 +1,9 @@
 import { Button, Card, Col, Container, Row } from "react-bootstrap";
 import useLoginViewModel from "../viewmodel/useLoginViewModel";
 
-export default function RegisterView(){
-    const viewmodel = useLoginViewModel()
+export default function RegisterView({userviewmodel}){
+    
+    const viewmodel = useLoginViewModel(userviewmodel)
     
     return (
         <Container className="wrapper">
@@ -23,6 +24,7 @@ export default function RegisterView(){
                                     type="submit" 
                                     children="Crear Cuenta"
                                     disabled = {!viewmodel.isValidForm()}
+                                    onClick={()=>{viewmodel.AttemptRegister()}}
                                 />
                                 <div><a href="login">Iniciar Sesion?</a></div>
                             </div>

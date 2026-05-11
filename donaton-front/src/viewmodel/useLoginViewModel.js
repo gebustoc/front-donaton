@@ -1,13 +1,25 @@
 import { useState } from "react";
+import UserService from "../service/UserService";
 
-export default function useLoginViewModel(){
+export default function useLoginViewModel(loggedviewmodel){
     const [email,setEmail] = useState("")
     const [pass,setPass] = useState("")
     
     const AttemptLogin = ()=>{
+
+
     }
 
     const AttemptRegister = ()=>{
+        UserService.register(
+            {
+                "email": email,
+                "password": pass,
+                "idUserType": {"idUserType": 1}
+            }
+
+        )
+
     }
 
     const isValidForm = ()=>{
