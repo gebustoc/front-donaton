@@ -13,12 +13,13 @@ export default function useLoggedInViewModel(){
     const tryLogin =()=>{
         setWaiting(true)
         let token = localStorage.getItem("token")
-        if (token == null){
-            setWaiting(false)    
+        if (token == null){    
             return
         }
-        
-        const idk = UserService.tokenLogin(JSON.parse(token))
+        console.log(token, "???")
+        let obj = JSON.parse(token)
+        console.log(obj)
+        const idk = UserService.login(obj.email,obj.contrasena)
         console.log(idk)
 
 

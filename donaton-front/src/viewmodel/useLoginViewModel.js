@@ -6,7 +6,9 @@ export default function useLoginViewModel(loggedviewmodel){
     const [pass,setPass] = useState("")
     
     const AttemptLogin = ()=>{
-
+        UserService.login(email,pass)
+        //loggedviewmodel.tryLogin();
+        
 
     }
 

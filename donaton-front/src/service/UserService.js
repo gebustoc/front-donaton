@@ -2,11 +2,6 @@ import api from "./api.js";
 
 class UserService {
     
-  async getAllUsers() {
-    const response = await api.get("/logistica/user"); 
-    return response.data;
-  }
-
   async getUserById(id) {
     const response = await api.get(`/necesidades/user/${id}`);
     return response.data;
@@ -15,39 +10,37 @@ class UserService {
   async register(clienteData) {
     
     const response = await api.post("/necesidades/user", clienteData);
-    
-    if (response.data) {await this.login(clienteData.email, clienteData.contrasena);}
+    console.log(response.data)
+
+    if (response.data) {
+        localStorage.setItem("token", JSON.stringify({"email": response.data.email,"contrasena": response.data.password}));
+    }
     return response.data;
   }
 
+ 
   async deleteUsuario(userId) {
     await api.delete(`/logistica/user/${userId}`);
     return true;
   }
 
   async login(email, contrasena) {
-    const response = await api.post(`/necesidades/login`, { email, contrasena });
-
+    const response = await api.post(`/necesidades/user/login`, { "email":email, "contrasena":contrasena });
     // not actually a token because not able to figure them out :/
-    if (response.data.token) {
-        localStorage.setItem("token", response.data);
+    if (response.data) {
+        localStorage.setItem("token", JSON.stringify(response.data));
     }
     return response.data;
   }
 
-  async tokenLogin(obj) {
-    const response = await api.post(`/necesidades/login`, obj);
-    
-    if (response.data.token) {localStorage.setItem("token", response.data)}
-    return response.data;
-  }
+
 
   
   logout() {
     localStorage.removeItem("token"); 
   }
 
-  
+
 
 }
 
