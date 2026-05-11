@@ -1,6 +1,9 @@
 import { Button, Card, Col, Container, Row } from "react-bootstrap";
+import useLoginViewModel from "../viewmodel/useLoginViewModel";
 
 export default function RegisterView(){
+    const viewmodel = useLoginViewModel()
+    
     return (
         <Container className="wrapper">
             <Row className="justify-content-center loginbg" style={{alignItems:"center",height:"90vh"}}>
@@ -9,18 +12,19 @@ export default function RegisterView(){
                         <Card.Body style={{display:"grid"}}>
                             <h1 style={{textAlign:"center"}}>Crear Cuenta</h1>
                             <h5>Correo</h5>
-                            <input></input>
+                            <input value={viewmodel.email} onChange={(event)=>viewmodel.setEmail(event.target.value)}></input>
                             <h5>Contraseña</h5>
-                            <input></input>
+                            <input value={viewmodel.pass1} onChange={(event)=>viewmodel.setPass(event.target.value)}></input>
 
                             
                             <div style={{paddingTop: "1rem"}}>
                                 <Button 
                                     id="boton-inicio" 
                                     type="submit" 
-                                    children="Crear cuenta" 
+                                    children="Crear Cuenta"
+                                    disabled = {!viewmodel.isValidForm()}
                                 />
-                                <div><a href="register">Iniciar Sesion?</a></div>
+                                <div><a href="login">Iniciar Sesion?</a></div>
                             </div>
                         </Card.Body>
                     </Card>

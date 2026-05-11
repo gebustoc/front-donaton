@@ -1,11 +1,24 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import DummyNeed from "../fakedata";
+import NeedsService from "../service/NeedsService";
 
 export const useCausesViewModel = () =>{
     const [page,setPage] = useState(0);
     const [donating,setDonating] = useState(false);
     const [donationAmount, setDonationAmount] = useState(1)    
     const [sendingDonation, setSendingDonation] = useState(false)
+    const [needs,setNeeds] = useState([])
+    useEffect(
+        ()=>{
+            NeedsService.getAllNeeds().then(
+                (val)=>{
+                    try{setNeeds(JSON.parse(val))}
+                    catch{setNeeds([])}
+                }
+            )
+        },[page]
+    )
+
 
     const nextPage = ()=>{
         if (page > 4) return
@@ -22,7 +35,7 @@ export const useCausesViewModel = () =>{
     }
 
     return {
-        getNeeds: ()=>DummyNeed(),
+        getNeeds: ()=>needs,
         page,
         nextPage,
         prevPage,

@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import UserService from "../service/UserService";
 
 
 
@@ -16,6 +17,11 @@ export default function useLoggedInViewModel(){
             setWaiting(false)    
             return
         }
+        
+        const idk = UserService.tokenLogin(JSON.parse(token))
+        console.log(idk)
+
+
         // call api to check if token is valid here
         setLoggedIn(true)
         setWaiting(false)
@@ -32,15 +38,25 @@ export default function useLoggedInViewModel(){
         setLoggedIn(false)
 
     }
+    const tryLoginCreds =(creds)=>{
+        setWaiting(true)
+        
+        const idk = UserService.tokenLogin(creds)
+        console.log(idk)
+        // call api to check if token is valid here
+        setLoggedIn(true)
+        setWaiting(false)
+    }
 
 
-    useEffect(tryLogin)
+    useEffect(tryLogin,[])
     
     return {
         loggedIn,
         tryLogin,
         closeSession,
-        waiting
+        waiting,
+        tryLoginCreds
     }
 
 

@@ -38,6 +38,9 @@ function DonationBox({viewmodel}){
 
 function DonationCard({element,onclick,loggedin}) {
     const URL = "https://f4.bcbits.com/img/a1156589754_2.jpg"
+    element.idNeedsState.curValue = 0
+    element.idNeedsState.max = 0
+    
     return (
         <Card className="shadow">
             <Card.Img src={URL}></Card.Img>
@@ -82,11 +85,6 @@ function NeedsView({loginviewmodel}) {
                     {elements}
                 </div>
 
-                <div style={{display:"flex", justifyContent:"center",paddingBottom:"1.5rem", gap:"1rem"}}>
-                    <Button onClick={viewmodel.prevPage} disabled={viewmodel.page <= 0}>Anterior</Button>
-                    <input type="number" min={0} max={4} value={viewmodel.page} onChange={ (event)=>{viewmodel.setPage(event.target.value)} }/>
-                    <Button onClick={viewmodel.nextPage} disabled={viewmodel.isEnd()}>Siguiente</Button>
-                </div>
 
             </div>
             <DonationBox viewmodel={viewmodel}></DonationBox>
@@ -95,7 +93,13 @@ function NeedsView({loginviewmodel}) {
         </div>
         
     ) 
-
+    /* for when pages are added
+                <div style={{display:"flex", justifyContent:"center",paddingBottom:"1.5rem", gap:"1rem"}}>
+                    <Button onClick={viewmodel.prevPage} disabled={viewmodel.page <= 0}>Anterior</Button>
+                    <input type="number" min={0} max={4} value={viewmodel.page} onChange={ (event)=>{viewmodel.setPage(event.target.value)} }/>
+                    <Button onClick={viewmodel.nextPage} disabled={viewmodel.isEnd()}>Siguiente</Button>
+                </div>
+    */
 
 }
 
