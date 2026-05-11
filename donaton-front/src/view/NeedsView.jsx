@@ -37,18 +37,19 @@ function DonationBox({viewmodel}){
 }
 
 function DonationCard({element,onclick,loggedin}) {
-    const URL = "https://f4.bcbits.com/img/a1156589754_2.jpg"
-    element.idNeedsState.curValue = 0
-    element.idNeedsState.max = 0
+    const URL = "/a1156589754_2.jpg"
+    //element.idNeedsState.curValue = 0
+    //element.idNeedsState.max = 0
+    console.log("???", element.idUbication.idDistric)
     
     return (
         <Card className="shadow">
             <Card.Img src={URL}></Card.Img>
             <div style={{paddingLeft:"1rem",paddingRight:"1rem",paddingBottom:"1rem"}}>
                 <h2>{element.needs}</h2>
-                <h5>{element.idUbicacion.idDistrict.district + " - " +element.idUbicacion.idDistrict.idRegion.region}</h5>
-                <h5>{"Progreso:" + element.idNeedsState.curValue+"/"+element.idNeedsState.max}</h5>
-                <ProgressBar now={element.idNeedsState.curValue} max={element.idNeedsState.max}/>
+                <h5>{element.idUbication.idDistric.distric + " - " +element.idUbication.idDistric.idRegion.region}</h5>
+                <h5>{"Progreso:" + 0+"/"+0}</h5>
+                <ProgressBar now={0} max={0}/>
                 <div style={{paddingTop:".5rem"}}></div>
                 <Button style={{alignSelf:"center", width:"100%"} } onClick={onclick} disabled={!loggedin}>Donar</Button>
             </div>
@@ -65,7 +66,7 @@ function NeedsView({loginviewmodel}) {
     let elements = []
 
     //elements.push(<TestElement element={it} />
-    viewmodel.getNeeds().forEach(
+    viewmodel.needs.forEach(
         (it)=>{
             elements.push(<DonationCard element={it} onclick={viewmodel.startDonationsMenu} loggedin={loginviewmodel.loggedIn} />)
         }

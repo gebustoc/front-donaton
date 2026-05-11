@@ -8,34 +8,35 @@ export const useCausesViewModel = () =>{
     const [donationAmount, setDonationAmount] = useState(1)    
     const [sendingDonation, setSendingDonation] = useState(false)
     const [needs,setNeeds] = useState([])
-    useEffect(
-        ()=>{
-            NeedsService.getAllNeeds().then(
-                (val)=>{
-                    try{setNeeds(JSON.parse(val))}
+    
+    const updateElements =  ()=>{
+        NeedsService.getAllNeeds().then(
+            (val)=>{
+                    console.log(val)
+                    try{setNeeds(val)}
                     catch{setNeeds([])}
                 }
             )
-        },[page]
-    )
-
-
+    }
+    
     const nextPage = ()=>{
         if (page > 4) return
         setPage(page+1);
     }
-
+    
     const prevPage = ()=>{
         if (page <= 0) return
         setPage(page-1);
-
+        
     }
     const isEnd = ()=>{
         return page >= 4
     }
-
+    useEffect(updateElements,[page])
+    
     return {
-        getNeeds: ()=>needs,
+        needs,
+        updateElements,
         page,
         nextPage,
         prevPage,
